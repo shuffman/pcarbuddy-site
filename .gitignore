@@ -1,2 +1,5 @@
 .DS_Store
 *.log
+
+# Second-opinion review records — local notes, not part of the site.
+.second-opinion/

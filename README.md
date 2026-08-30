@@ -26,14 +26,25 @@ either way. `noindex` is tidiness, not a security control.
 ## Design
 
 `site/style.css` is the shared design system from `odhllc-site`,
-`garage-buddy-site` and `workout-buddy-site` — everything from "Tokens" to
-"Footer" is byte-identical to those three. Only two things differ:
+`garage-buddy-site` and `workout-buddy-site`. Precisely what is and isn't
+shared, because "it's the same stylesheet" is not quite true:
 
-- the brand block at the top (`--accent: #c4342a`, redline red)
-- the **Index** block, this site's equivalent of Garage Buddy's odometer hero
+| Region | State |
+|---|---|
+| Tokens, Base, Type scale, Links, Nav, Card | **byte-identical** to the siblings (verified by diff) |
+| Brand block (top of file) | changed — `--accent: #c4342a`, redline red |
+| Odometer hero, Screenshots, Release notes | **deleted** — no such markup on this page |
+| Index block | new, this site's only original CSS |
+| Footer | byte-identical |
+| Quality floor | two lines changed — the print rules for `details.early` and `.release` are dead here, since neither element exists |
+
+So the copied-verbatim region is Tokens→Card plus Footer. Everything else in
+the file was either removed, added, or edited.
 
 Copied rather than shared, for the same reason the other three copy it: four
-self-contained repos beat a package for 300 lines of CSS.
+self-contained repos beat a package for 300 lines of CSS. That only holds while
+the shared region stays diffable, which is why the table above is specific
+about where it stops.
 
 ## Adding a project
 

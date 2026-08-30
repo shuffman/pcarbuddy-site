@@ -6,8 +6,11 @@
 <title>Car Projects — pcarbuddy</title>
 <meta name="description" content="An index of the car projects running under pcarbuddy: market trackers, auction research, inventory catalogues, iPhone apps, and the scrapers underneath them.">
 <!-- A personal index that names internal hostnames. Reachable if you have the
-     link; not something to hand to a search engine. Remove to list it. -->
-<meta name="robots" content="noindex, nofollow">
+     link; not something to hand to a search engine. Remove to list it.
+     noindex only, deliberately: nofollow would also stop crawlers following
+     through to the projects below, which is the opposite of what this page
+     is for. -->
+<meta name="robots" content="noindex">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -31,7 +34,7 @@ will it cost me later?</p>
 <ul class="index">
 
   <li>
-    <span class="name"><a href="https://porsche-tracker.fulgent.org">Porsche Tracker</a></span>
+    <h3 class="name"><a href="https://porsche-tracker.fulgent.org">Porsche Tracker</a></h3>
     <span class="tag tag-live">Private</span>
     <p>Tracks the US Porsche market — every new, CPO and used listing — daily,
     and analyses it by segment: what a given car is worth, how long it sits,
@@ -40,7 +43,7 @@ will it cost me later?</p>
   </li>
 
   <li>
-    <span class="name"><a href="https://porsche-pi.fulgent.org">Porsche P.I.</a></span>
+    <h3 class="name"><a href="https://porsche-pi.fulgent.org">Porsche P.I.</a></h3>
     <span class="tag tag-live">Live</span>
     <p>A private investigator for Porsche models. Hand it a Bring a Trailer
     model page and it pulls the complete auction record, reads the recent
@@ -52,7 +55,7 @@ will it cost me later?</p>
   </li>
 
   <li>
-    <span class="name"><a href="https://auction-pi-production.up.railway.app">Auction PI</a></span>
+    <h3 class="name"><a href="https://auction-pi-production.up.railway.app">Auction PI</a></h3>
     <span class="tag tag-live">Live</span>
     <p>The same idea pointed at every marque. Paste a listing and it reads every
     completed sale for that model, works through the recent ones line by line,
@@ -62,7 +65,7 @@ will it cost me later?</p>
   </li>
 
   <li>
-    <span class="name"><a href="https://auctionwatch-production.up.railway.app">AuctionWatch</a></span>
+    <h3 class="name"><a href="https://auctionwatch-production.up.railway.app">AuctionWatch</a></h3>
     <span class="tag tag-live">Live</span>
     <p>One search box across eleven listing sites at once — Cars &amp; Bids,
     Bring a Trailer, Hagerty, PCar Market and eBay Motors on the auction side;
@@ -72,7 +75,7 @@ will it cost me later?</p>
   </li>
 
   <li>
-    <span class="name"><a href="https://caddy-buddy.fulgent.org">Caddy Buddy</a></span>
+    <h3 class="name"><a href="https://caddy-buddy.fulgent.org">Caddy Buddy</a></h3>
     <span class="tag tag-live">Live</span>
     <p>A national catalogue of the two Cadillac Blackwings — and, kept
     deliberately apart from them, the CT5-V and CT4-V that share their bodies.
@@ -82,7 +85,7 @@ will it cost me later?</p>
   </li>
 
   <li>
-    <span class="name"><a href="https://monroneybuddy.com">Monroney Buddy</a></span>
+    <h3 class="name"><a href="https://monroneybuddy.com">Monroney Buddy</a></h3>
     <span class="tag tag-live">API</span>
     <p>Window stickers as a service. Storage, parsing and one API across every
     OEM, so the scrapers stop each parsing Monroney labels their own way and
@@ -97,7 +100,7 @@ will it cost me later?</p>
 <ul class="index">
 
   <li>
-    <span class="name"><a href="https://garage-buddy.app">Garage Buddy</a></span>
+    <h3 class="name"><a href="https://garage-buddy.app">Garage Buddy</a></h3>
     <span class="tag tag-live">App Store</span>
     <p>Mileage, fuel and running costs for every car you own. Photograph the
     odometer and it reads the number off it; the data lives on your iPhone or
@@ -107,7 +110,7 @@ will it cost me later?</p>
   </li>
 
   <li>
-    <span class="name"><a href="https://testflight.apple.com/join/Yfgj5x49">Rally Buddy</a></span>
+    <h3 class="name"><a href="https://testflight.apple.com/join/Yfgj5x49">Rally Buddy</a></h3>
     <span class="tag tag-live">TestFlight</span>
     <p>A co-driver for everyday roads. Mark passing lanes, residential zones and
     tight corners on roads you drive, and it calls them out before you reach
@@ -124,7 +127,7 @@ they grew out of.</p>
 <ul class="index">
 
   <li>
-    <span class="name">Porsche Finder</span>
+    <h3 class="name">Porsche Finder</h3>
     <p>Aggregates US Porsche inventory from finder.porsche.com and independent
     dealer sites, downloads and parses the window stickers and build sheets for
     MSRP and every factory option, and pulls Carfax and days-on-market. The
@@ -134,7 +137,7 @@ they grew out of.</p>
   </li>
 
   <li>
-    <span class="name">GR Tracker</span>
+    <h3 class="name">GR Tracker</h3>
     <p>The same machinery as Porsche Finder, pointed at Toyota's GR line — GR
     Supra, GR86, GR Corolla — and kept as a separate single-make instance.
     There is no Toyota equivalent of Porsche's Monroney endpoint, so it carries
@@ -143,7 +146,7 @@ they grew out of.</p>
   </li>
 
   <li>
-    <span class="name">CarMap</span>
+    <h3 class="name">CarMap</h3>
     <p>Parses a CARFAX report PDF in the browser and plots the car's whole
     history on a map — ownership changes, service visits, accidents, sales and
     inspections, geocoded and joined by the car's travel path. No server, and
@@ -152,14 +155,14 @@ they grew out of.</p>
   </li>
 
   <li>
-    <span class="name">CarTracker</span>
+    <h3 class="name">CarTracker</h3>
     <p>An earlier SwiftUI take on what became Garage Buddy: multi-car mileage
     and expenses with Google Sheets as the backend and OCR odometer scanning.</p>
     <span class="where">~/Projects/cartrack</span>
   </li>
 
   <li>
-    <span class="name">pcar</span>
+    <h3 class="name">pcar</h3>
     <p>The original Porsche dealer scraper — a Perl script that Vercel's bot
     check kept blocking, rewritten in Python and Playwright to get a headless
     browser past the JavaScript challenge. SQLite out the back.</p>
@@ -167,7 +170,7 @@ they grew out of.</p>
   </li>
 
   <li>
-    <span class="name">bidgraph</span>
+    <h3 class="name">bidgraph</h3>
     <p>A Python project with a SQLite store and a test suite, and no README yet
     to say what it is.</p>
     <span class="where">~/Projects/bidgraph</span>

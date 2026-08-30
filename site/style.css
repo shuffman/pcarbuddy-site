@@ -1,0 +1,328 @@
+/* ─────────────────────────────────────────────────────────────
+   Shared design system across odhllc-site, garage-buddy-site,
+   workout-buddy-site and this one. Everything from "Tokens" to
+   "Footer" is identical in all four; only the brand block below
+   differs, plus this site's own Index block further down.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --accent: #c4342a;        /* redline red */
+  --accent-lift: #ff8b7d;   /* the dark-mode counterpart */
+}
+
+/* ── Tokens ─────────────────────────────────────────────────── */
+
+:root {
+  color-scheme: light dark;
+
+  --bg: #fcfcfd;
+  --surface: #f2f3f6;
+  --fg: #15161a;
+  --muted: #676a74;
+  --rule: rgba(18, 20, 28, .10);
+
+  /* No web fonts, deliberately: these apps make no network calls
+     and collect nothing, so the site shouldn't fetch a typeface
+     from a third party to say so. Three system roles instead. */
+  --font-display: ui-rounded, "SF Pro Rounded", "Hiragino Maru Gothic ProN",
+                  system-ui, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui,
+               sans-serif;
+  --font-data: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+               monospace;
+
+  --measure: 42rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1013;
+    --surface: #191a1f;
+    --fg: #e8e9ee;
+    --muted: #93959f;
+    --rule: rgba(255, 255, 255, .12);
+    --accent: var(--accent-lift);
+  }
+}
+
+* { box-sizing: border-box; }
+
+/* ── Base ───────────────────────────────────────────────────── */
+
+body {
+  margin: 0 auto;
+  max-width: var(--measure);
+  padding: 0 1.35rem 6rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Sticky nav sits flush to the viewport, so anchored headings
+   need to clear it when jumped to. */
+[id] { scroll-margin-top: 4.5rem; }
+
+/* ── Type scale ─────────────────────────────────────────────── */
+
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6.5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -.028em;
+  margin: .6rem 0 .5rem;
+}
+
+/* The signature: every section is marked like a gauge — a hairline
+   across the measure, broken by a short accent tick at the index
+   point. On release notes the same device marks each version. */
+h2 {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -.018em;
+  margin: 3.2rem 0 .85rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--rule);
+}
+
+h2::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 1.85rem;
+  height: 2px;
+  background: var(--accent);
+}
+
+h3 {
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  font-weight: 650;
+  letter-spacing: -.006em;
+  margin: 1.8rem 0 .3rem;
+}
+
+p, li { margin: .75rem 0; }
+ul { padding-left: 1.15rem; }
+li { margin: .5rem 0; }
+li::marker { color: var(--muted); }
+
+strong { font-weight: 650; }
+
+.tagline {
+  color: var(--muted);
+  font-size: 1.02rem;
+  margin: 0 0 2.2rem;
+}
+
+.lede {
+  font-size: 1.12rem;
+  line-height: 1.6;
+  letter-spacing: -.008em;
+}
+
+code {
+  font-family: var(--font-data);
+  font-size: .86em;
+  background: var(--surface);
+  padding: .13em .4em;
+  border-radius: 5px;
+}
+
+/* ── Links ──────────────────────────────────────────────────── */
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--accent) 38%, transparent);
+  transition: text-decoration-color .15s ease;
+}
+
+a:hover { text-decoration-color: currentColor; }
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* A heading that happens to be a link is still a heading — it gets
+   the accent, not the underline, until you reach for it. */
+h1 a, h2 a, h3 a { text-decoration: none; }
+h1 a:hover, h2 a:hover, h3 a:hover {
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+/* ── Nav ────────────────────────────────────────────────────── */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1.15rem;
+  margin: 0 0 2.6rem;
+  padding: 1.3rem 0 .95rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 86%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  font-size: .93rem;
+}
+
+nav a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+nav a:first-child {
+  font-family: var(--font-display);
+  font-weight: 650;
+  letter-spacing: -.014em;
+  color: var(--fg);
+  margin-right: auto;   /* brand left, sections right */
+}
+
+nav a:hover { color: var(--fg); }
+
+nav a[aria-current="page"] {
+  color: var(--fg);
+  font-weight: 550;
+}
+
+/* ── Card ───────────────────────────────────────────────────── */
+
+.card {
+  background: var(--surface);
+  border-radius: 14px;
+  padding: 1.25rem 1.4rem;
+  margin: 1.5rem 0;
+}
+
+.card p:first-child { margin-top: 0; }
+.card p:last-child { margin-bottom: 0; }
+.card h3:first-child { margin-top: 0; }
+
+
+/* ── Index ──────────────────────────────────────────────────── */
+/* This site is a list of other sites, so the list is the design.
+   One row per project: name, what it is, and where it runs. No
+   cards — a card per project would make fifteen boxes and no
+   hierarchy. The rule between rows does the same job for less. */
+
+.index {
+  margin: .4rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.index > li {
+  margin: 0;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.index > li:first-child { border-top: none; }
+
+.index .name {
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: 650;
+  letter-spacing: -.012em;
+}
+
+.index p {
+  margin: .3rem 0 0;
+  font-size: .97rem;
+  line-height: 1.6;
+}
+
+/* Where it runs, set as data because that's what it is: a hostname
+   or a repo path, never prose. */
+.index .where {
+  display: block;
+  margin: .45rem 0 0;
+  font-family: var(--font-data);
+  font-size: .78rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+/* A gated service is still live — saying "403" would be honest and
+   useless. The dot says "running", the word says "who for". */
+.tag {
+  display: inline-block;
+  margin-left: .5rem;
+  padding: .05rem .45rem;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--rule);
+  font-family: var(--font-data);
+  font-size: .67rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  vertical-align: .12em;
+  white-space: nowrap;
+}
+
+.tag::before {
+  content: "";
+  display: inline-block;
+  width: .4em;
+  height: .4em;
+  margin-right: .42em;
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: .1em;
+}
+
+.tag-live { color: var(--accent); }
+
+/* ── Footer ─────────────────────────────────────────────────── */
+
+footer {
+  margin-top: 4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: .87rem;
+  line-height: 1.6;
+}
+
+footer a { color: var(--muted); }
+footer a:hover { color: var(--fg); }
+
+/* ── Quality floor ──────────────────────────────────────────── */
+
+@media (max-width: 32rem) {
+  body { font-size: 16.5px; padding-bottom: 4rem; }
+  nav { gap: .9rem; font-size: .88rem; }
+  nav a:first-child { flex-basis: 100%; margin-right: 0; }
+  h2 { margin-top: 2.6rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+@media print {
+  nav { display: none; }
+  body { max-width: none; color: #000; background: #fff; font-size: 11pt; }
+  a { color: #000; text-decoration: underline; }
+  h2 { break-after: avoid; }
+}
